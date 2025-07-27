@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 export default function Form() {
   const [exerciseItems, setExerciseItems] = useState<JSX.Element[]>([]);
   const [formItems, setFormItems] = useState<JSX.Element[]>([]);
@@ -33,14 +33,19 @@ export default function Form() {
     ]);
   };
 
-  useEffect(() => {
-    setFormItems(formItems);
-  }, [formItems]);
-
   return (
     <form>
       <div>
         {exerciseItems.map((item, index) => (
+          <div key={index}>
+            {item}
+            <h1>Z</h1>
+          </div>
+        ))}
+      </div>
+      <div>
+        {/* Funkar ändast när loopen är här. */}
+        {formItems.map((item, index) => (
           <div key={index}>{item}</div>
         ))}
       </div>
