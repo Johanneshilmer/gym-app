@@ -1,7 +1,12 @@
 export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <h1>Hello, looks like everything is working now!</h1>
+      <div>
+        <h1>Hello, looks like everything is working now!</h1>
+      </div>
+      <div>
+        <a href="/home">Login!</a>
+      </div>
     </div>
   );
 }
