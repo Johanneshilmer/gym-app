@@ -6,13 +6,13 @@ type Exercise = { sets: Set[] };
 export default function Form() {
   const [exercises, setExercises] = useState<Exercise[]>([]);
 
-  // Adding Exercise
+  // Add Exercise
   const handleAddExercise = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setExercises((prev) => [...prev, { sets: [] }]);
   };
 
-  // Adding Set to a specific exercise
+  // Add Set to a specific exercise
   const handleAddSet =
     (exerciseIndex: number) => (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
