@@ -1,50 +1,45 @@
-"use client";
 import { useState } from "react";
+
+type Set = { reps: string };
+type Exercise = { sets: Set[] };
+
 export default function Form() {
-  const [exerciseItems, setExerciseItems] = useState<JSX.Element[]>([]);
-  const [formItems, setFormItems] = useState<JSX.Element[]>([]);
+  const [exercises, setExercises] = useState<Exercise[]>([]);
 
   // Add Exercise
-  const handleExerciseItem = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleAddExercise = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setExerciseItems((prev) => [
-      ...prev,
-      <div key={prev.length}>
-        <div>
-          <h1>Ny Övning</h1>
-          {formItems.map((item, index) => (
-            <div key={index}>{item}</div>
-          ))}
-          <button onClick={handleSetItem}>Add Set</button>
-        </div>
-      </div>,
-    ]);
+    setExercises((prev) => [...prev, { sets: [] }]);
   };
 
-  // Add more sets to the exercise.
-  const handleSetItem = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setFormItems((prev) => [
-      ...prev,
-      <p key={prev.length}>
-        <input type="text" />
-        <button>Reps</button>
-      </p>,
-    ]);
-  };
+  // Add Set to a specific exercise
+  const handleAddSet =
+    (exerciseIndex: number) => (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      setExercises((prev) =>
+        prev.map((item, index) =>
+          index === exerciseIndex
+            ? { ...item, sets: [...item.sets, { reps: "" }] }
+            : item,
+        ),
+      );
+    };
 
   return (
     <form>
-      <div>
-        {exerciseItems.map((item, index) => (
-          <div key={index}>
-            {item}
-            <h1>Z</h1>
-          </div>
-        ))}
-      </div>
-      <div></div>
-      <button onClick={handleExerciseItem}>Add Exercise</button>
+      {exercises.map((exercise, exerciseIndex) => (
+        <div key={exerciseIndex}>
+          <h1>Ny Övning</h1>
+          {exercise.sets.map((item, setIndex) => (
+            <p key={setIndex}>
+              <input type="text" value={item.reps} readOnly />
+              <button>Reps</button>
+            </p>
+          ))}
+          <button onClick={handleAddSet(exerciseIndex)}>Add Set</button>
+        </div>
+      ))}
+      <button onClick={handleAddExercise}>Add Exercise</button>
     </form>
   );
 }
