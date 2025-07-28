@@ -31,10 +31,16 @@ export default function Form() {
         <div key={exerciseIndex}>
           <h1>Ny Övning</h1>
           {exercise.sets.map((item, setIndex) => (
-            <p key={setIndex}>
-              <input type="text" value={item.reps} readOnly />
-              <button>Reps</button>
-            </p>
+            <div key={setIndex}>
+              <div>
+                <h1>Reps</h1>
+                <input type="number" value={item.reps} readOnly />
+              </div>
+              <div>
+                <h1>Weight</h1>
+                <input type="number" value={item.reps} readOnly />
+              </div>
+            </div>
           ))}
           <button onClick={handleAddSet(exerciseIndex)}>Add Set</button>
         </div>
