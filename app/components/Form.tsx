@@ -43,12 +43,7 @@ export default function Form() {
           </div>
         ))}
       </div>
-      <div>
-        {/* Funkar ändast när loopen är här. */}
-        {formItems.map((item, index) => (
-          <div key={index}>{item}</div>
-        ))}
-      </div>
+      <div></div>
       <button onClick={handleExerciseItem}>Add Exercise</button>
     </form>
   );
