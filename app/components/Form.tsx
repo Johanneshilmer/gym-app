@@ -37,7 +37,7 @@ export default function Form() {
                 <input type="number" value={item.reps} readOnly />
               </div>
               <div>
-                <h1>Weight</h1>
+                <h1>Weights</h1>
                 <input type="number" value={item.reps} readOnly />
               </div>
             </div>
