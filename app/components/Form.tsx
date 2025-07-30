@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "flowbite-react";
+import "./Form.css";
 
 type Set = { reps: string };
 type Exercise = { sets: Set[] };
@@ -27,143 +28,100 @@ export default function Form() {
     };
 
   return (
-    <form className="max-w-xs mx-auto">
-      {exercises.map((exercise, exerciseIndex) => (
-        <div key={exerciseIndex}>
-          <h1>Övningens Namn</h1>
-          {exercise.sets.map((item, setIndex) => (
-            <div key={setIndex}>
-              <h1>Set: 1</h1>
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Reps:
-              </label>
-              <div className="relative flex items-center max-w-[8rem]">
-                <button
-                  type="button"
-                  id="decrement-button"
-                  data-input-counter-decrement="quantity-input"
-                  className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+    <form className="p-6">
+      <div className="flex flex-wrap gap-6">
+        {exercises.map((exercise, exerciseIndex) => (
+          <div
+            className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 min-w-[320px] flex-1"
+            key={exerciseIndex}
+          >
+            <h2 className="text-xl font-semibold mb-4 text-blue-700 dark:text-blue-300">
+              Övning {exerciseIndex + 1}
+            </h2>
+            <div className="space-y-6">
+              {exercise.sets.map((item, setIndex) => (
+                <div
+                  key={setIndex}
+                  className="border border-gray-200 dark:border-gray-700 rounded-md p-4 bg-gray-50 dark:bg-gray-700"
                 >
-                  <svg
-                    className="w-3 h-3 text-gray-900 dark:text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 2"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M1 1h16"
-                    />
-                  </svg>
-                </button>
-                <input
-                  value={item.reps}
-                  type="text"
-                  id="quantity-input"
-                  data-input-counter
-                  data-input-counter-min="1"
-                  data-input-counter-max="50"
-                  aria-describedby="helper-text-explanation"
-                  className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="999"
-                  required
-                />
-                <button
-                  type="button"
-                  id="increment-button"
-                  data-input-counter-increment="quantity-input"
-                  className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-                >
-                  <svg
-                    className="w-3 h-3 text-gray-900 dark:text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Weight:
-                </label>
-                <div className="relative flex items-center max-w-[8rem]">
-                  <button
-                    type="button"
-                    id="decrement-button"
-                    data-input-counter-decrement="quantity-input"
-                    className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-                  >
-                    <svg
-                      className="w-3 h-3 text-gray-900 dark:text-white"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 18 2"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M1 1h16"
-                      />
-                    </svg>
-                  </button>
-                  <input
-                    type="text"
-                    id="quantity-input"
-                    data-input-counter
-                    data-input-counter-min="1"
-                    data-input-counter-max="50"
-                    aria-describedby="helper-text-explanation"
-                    className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="999"
-                    value={item.reps}
-                    required
-                  />
-                  <button
-                    type="button"
-                    id="increment-button"
-                    data-input-counter-increment="quantity-input"
-                    className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-                  >
-                    <svg
-                      className="w-3 h-3 text-gray-900 dark:text-white"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 18 18"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 1v16M1 9h16"
-                      />
-                    </svg>
-                  </button>
+                  <h3 className="font-medium text-gray-700 dark:text-gray-200 mb-2">
+                    Set {setIndex + 1}
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Reps */}
+                    <div>
+                      <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                        Reps
+                      </label>
+                      <div className="flex items-center">
+                        <button
+                          type="button"
+                          className="bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 border border-gray-300 rounded-l p-2 h-10"
+                        >
+                          -
+                        </button>
+                        <input
+                          value={item.reps}
+                          type="text"
+                          className="bg-white dark:bg-gray-800 border-x-0 border-gray-300 h-10 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-16"
+                          placeholder="Reps"
+                          required
+                          readOnly
+                        />
+                        <button
+                          type="button"
+                          className="bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 border border-gray-300 rounded-r p-2 h-10"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    {/* Weight */}
+                    <div>
+                      <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                        Weight (kg)
+                      </label>
+                      <div className="flex items-center">
+                        <button
+                          type="button"
+                          className="bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 border border-gray-300 rounded-l p-2 h-10"
+                        >
+                          -
+                        </button>
+                        <input
+                          type="text"
+                          className="bg-white dark:bg-gray-800 border-x-0 border-gray-300 h-10 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-16"
+                          placeholder="Weight"
+                          required
+                          readOnly
+                        />
+                        <button
+                          type="button"
+                          className="bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 border border-gray-300 rounded-r p-2 h-10"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
-          <Button onClick={handleAddSet(exerciseIndex)}>Add Set</Button>
-        </div>
-      ))}
-      <Button onClick={handleAddExercise}>Add Exercise</Button>
+            <Button
+              className="mt-4 w-full"
+              color="light"
+              onClick={handleAddSet(exerciseIndex)}
+            >
+              Add Set
+            </Button>
+          </div>
+        ))}
+      </div>
+      <div className="mt-8 flex justify-center">
+        <Button color="blue" onClick={handleAddExercise}>
+          Add Exercise
+        </Button>
+      </div>
     </form>
   );
 }
