@@ -12,11 +12,17 @@ export default function Form() {
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [title, setTitle] = useState<string>("Övning");
   const [inputTitle, setInputTitle] = useState<string>("");
+  const [change, setChange] = useState<boolean>(false);
+
+  const startEditMode = () => {
+    setChange(true);
+  };
 
   // Change workout title
   const changeTitle = () => {
     setTitle(inputTitle);
     setInputTitle("");
+    setChange(false);
   };
 
   // Handle the change of title
@@ -53,16 +59,24 @@ export default function Form() {
             key={exerciseIndex}
           >
             {/* Implement boolean for "if change" show this else for "this" */}
-            <span className="text-xl font-semibold mb-4 text-blue-700 dark:text-blue-300">
-              {title}
-            </span>
-            <input
-              type="text"
-              value={inputTitle}
-              onChange={handleTitleChange}
-              placeholder="Enter New Title"
-            />
-            <Button onClick={changeTitle}>Change title</Button>
+            {!change ? (
+              <>
+                <span className="text-xl font-semibold mb-4 text-blue-700 dark:text-blue-300">
+                  {title}
+                </span>
+                <button onClick={startEditMode}>Edit</button>
+              </>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  value={inputTitle}
+                  onChange={handleTitleChange}
+                  placeholder="Enter New Title"
+                />
+                <Button onClick={changeTitle}>Save</Button>
+              </>
+            )}
             <div className="space-y-6">
               {exercise.sets.map((item, setIndex) => (
                 <div
