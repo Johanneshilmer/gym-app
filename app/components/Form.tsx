@@ -14,6 +14,7 @@ export default function Form() {
   const [inputTitle, setInputTitle] = useState<string>("");
   const [change, setChange] = useState<boolean>(false);
 
+  // Start edit on title
   const startEditMode = () => {
     setChange(true);
   };
@@ -26,11 +27,10 @@ export default function Form() {
   };
 
   // Handle the change of title
-  const handleTitleChange = (e: React.FormEvent) => {
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setInputTitle(e.target.value);
   };
-
   // Add Exercise
   const handleAddExercise = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -105,7 +105,6 @@ export default function Form() {
                           className="bg-white dark:bg-gray-800 border-x-0 border-gray-300 h-10 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-16"
                           placeholder="Reps"
                           required
-                          readOnly
                         />
                         <button
                           type="button"
@@ -133,7 +132,6 @@ export default function Form() {
                           className="bg-white dark:bg-gray-800 border-x-0 border-gray-300 h-10 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-16"
                           placeholder="Weight"
                           required
-                          readOnly
                         />
                         <button
                           type="button"
